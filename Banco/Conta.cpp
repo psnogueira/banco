@@ -1,6 +1,22 @@
 #include "Conta.hpp"
 #include <iostream>
 
+int Conta::numeroDeContas = 0;
+
+// Método Construtor Conta
+Conta::Conta(std::string numeroConta, Titular titular):
+	numeroConta(numeroConta), 
+	titular(titular),
+	saldo(0) 
+{
+	numeroDeContas++;
+}
+
+// Método destrutor ~Conta
+Conta::~Conta() {
+	numeroDeContas--;
+}
+
 void Conta::sacar(float valorASacar) {
 	if (valorASacar < 0) {
 		std::cout << "Não pode sacar valor negativo" << std::endl;
@@ -24,30 +40,22 @@ void Conta::depositar(float valorADepositar) {
 	saldo += valorADepositar;
 }
 
-std::string Conta::recuperaNumero() {
+std::string Conta::recuperaNumero() const {
 	return numeroConta;
 }
 
-std::string Conta::recuperaCPFTitular() {
-	return cpfTitular;
+std::string Conta::recuperaCPF() const {
+	return titular.recuperaCPF();
 }
 
-std::string Conta::recuperaNomeTitular() {
-	return nomeTitular;
+std::string Conta::recuperaNome() const {
+	return titular.recuperaNome();
 }
 
 float Conta::recuperaSaldo() const {
 	return saldo;
 }
 
-void Conta::definirNumero(std::string numero) {
-	numeroConta = numero;
-}
-
-void Conta::definirCPFTitular(std::string cpf) {
-	cpfTitular = cpf;
-}
-
-void Conta::definirNomeTitular(std::string nome) {
-	nomeTitular = nome;
+int Conta::recuperaNumeroDeContas() {
+	return numeroDeContas;
 }
