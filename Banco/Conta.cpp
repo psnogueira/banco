@@ -7,7 +7,7 @@ int Conta::numeroDeContas = 0;
 Conta::Conta(std::string numeroConta, Titular titular):
 	numeroConta(numeroConta), 
 	titular(titular),
-	saldo(0) 
+	saldo(0)
 {
 	numeroDeContas++;
 }
@@ -23,12 +23,15 @@ void Conta::sacar(float valorASacar) {
 		return;
 	}
 
-	if (valorASacar > saldo) {
+	float tarifaDeSaque = valorASacar * 0.05;
+	float valorDoSaque = valorASacar + tarifaDeSaque;
+
+	if (valorDoSaque > saldo) {
 		std::cout << "Saldo insuficiente" << std::endl;
 		return;
 	}
 
-	saldo -= valorASacar;
+	saldo -= valorDoSaque;
 }
 
 void Conta::depositar(float valorADepositar) {
@@ -42,10 +45,6 @@ void Conta::depositar(float valorADepositar) {
 
 std::string Conta::recuperaNumero() const {
 	return numeroConta;
-}
-
-std::string Conta::recuperaCPF() const {
-	return titular.recuperaCPF();
 }
 
 std::string Conta::recuperaNome() const {

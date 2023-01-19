@@ -12,17 +12,17 @@ public:
 private:
 	std::string numeroConta;
 	Titular titular;
+
+protected:
 	float saldo;
 
 public:
 	Conta(std::string numeroConta, Titular titular);
 	~Conta();
-	void sacar(float valorASacar);
+	virtual void sacar(float valorASacar);
 	void depositar(float valorADepositar);
 	float recuperaSaldo() const;
 
 	std::string recuperaNumero() const;
-
-	std::string recuperaCPF() const;
 	std::string recuperaNome() const;
 };
