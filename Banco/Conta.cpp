@@ -17,21 +17,23 @@ Conta::~Conta() {
 	numeroDeContas--;
 }
 
-void Conta::sacar(float valorASacar) {
+std::variant<Conta::ResultadoDeErroDoSaque, float> Conta::sacar(float valorASacar) {
 	if (valorASacar < 0) {
 		std::cout << "Não pode sacar valor negativo" << std::endl;
-		return;
+		return ValorNegativo;
 	}
 
-	float tarifaDeSaque = valorASacar * 0.05;
+	float tarifaDeSaque = valorASacar * taxaDeSaque();
 	float valorDoSaque = valorASacar + tarifaDeSaque;
 
 	if (valorDoSaque > saldo) {
 		std::cout << "Saldo insuficiente" << std::endl;
-		return;
+		return SaldoInfuficiente;
 	}
 
 	saldo -= valorDoSaque;
+
+	return saldo;
 }
 
 void Conta::depositar(float valorADepositar) {
@@ -41,6 +43,14 @@ void Conta::depositar(float valorADepositar) {
 	}
 
 	saldo += valorADepositar;
+}
+
+void Conta::operator += (float valorADepositar) {
+	depositar(valorADepositar);
+}
+
+bool Conta::operator < (const Conta& outraConta) {
+	return this->saldo < outraConta.saldo;
 }
 
 std::string Conta::recuperaNumero() const {

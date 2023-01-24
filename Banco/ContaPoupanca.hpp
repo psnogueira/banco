@@ -1,10 +1,10 @@
 #pragma once
 #include "Conta.hpp"
 
-class ContaPoupanca: public Conta
+class ContaPoupanca final: public Conta
 {
 public:
 	ContaPoupanca(std::string numeroConta, Titular titular);
-	void sacar(float valorASacar);
+	float taxaDeSaque() const override;
 };
 
