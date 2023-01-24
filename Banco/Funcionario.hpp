@@ -12,5 +12,6 @@ public:
 	Funcionario(Cpf cpf, std::string nome, float salario);
 
 	float recuperaSalario() const;
+	virtual float bonificacao() const = 0;
 };
 

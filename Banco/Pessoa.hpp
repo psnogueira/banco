@@ -16,5 +16,6 @@ private:
 
 public:
 	std::string recuperaNome() const;
+	std::string recuperaCpf() const;
 };
 

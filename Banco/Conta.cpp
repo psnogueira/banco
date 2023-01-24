@@ -23,7 +23,7 @@ void Conta::sacar(float valorASacar) {
 		return;
 	}
 
-	float tarifaDeSaque = valorASacar * 0.05;
+	float tarifaDeSaque = valorASacar * taxaDeSaque();
 	float valorDoSaque = valorASacar + tarifaDeSaque;
 
 	if (valorDoSaque > saldo) {
