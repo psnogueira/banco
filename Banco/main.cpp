@@ -46,15 +46,6 @@ template<typename MeuTipo> MeuTipo Menor(MeuTipo a, MeuTipo b) {
 	return a < b ? a : b;
 }
 
-void FazLogin(Autenticavel& alguem, string senha) {
-	if (alguem.autentica(senha)) {
-		cout << "Login realizado com sucesso " << endl;
-	}
-	else {
-		cout << "Senha invalida " << endl;
-	}
-}
-
 int main() {
 	cout.precision(2);
 	
